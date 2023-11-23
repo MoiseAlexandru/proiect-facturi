@@ -28,6 +28,16 @@ namespace facturi_backend.Services.DetaliiFacturaService
             };
             return result;
         }
+        
+        public async Task<List<DetaliiFacturaResponseDTO?> > GetAll()
+        {
+            List<DetaliiFactura> detaliiFacturi = await _detaliiFacturaRepository.GetAll();
+            List<DetaliiFacturaResponseDTO?> resultList = new List<DetaliiFacturaResponseDTO?>();
+            foreach (DetaliiFactura detaliiFactura in detaliiFacturi)
+                resultList.Add(ConvertToDTO(detaliiFactura));
+            return resultList;
+        }
+
         public DetaliiFacturaResponseDTO? GetDetaliiFacturaById(int id)
         {
             DetaliiFactura? detaliiFactura = _detaliiFacturaRepository.FindById(id);

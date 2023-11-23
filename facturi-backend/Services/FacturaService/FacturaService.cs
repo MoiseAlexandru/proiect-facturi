@@ -32,6 +32,25 @@ namespace facturi_backend.Services.FacturaService
             return response;
         }
 
+        public async Task<List<FacturaResponseDTO?>> GetAll()
+        {
+            List<Factura> facturi = await _facturaRepository.GetAll();
+            List<FacturaResponseDTO?> resultList = new List<FacturaResponseDTO?>();
+            foreach (Factura factura in facturi)
+            {
+                FacturaResponseDTO currentElement = new()
+                {
+                    IdFactura = factura.IdFactura,
+                    IdLocatie = factura.IdLocatie,
+                    NumarFactura = factura.NumarFactura,
+                    DataFacturare = factura.DataFacturare,
+                    NumeClient = factura.NumeClient
+                };
+                resultList.Add(currentElement);
+            }
+            return resultList;
+        }
+
         public void AddFactura(FacturaReceiveDTO payload)
         {
             int genIdFactura = _facturaRepository.GenerateUniqueId();

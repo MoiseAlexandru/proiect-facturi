@@ -21,5 +21,10 @@ namespace facturi_backend.Repositories.DetaliiFacturaRepository
         {
             return _table.FirstOrDefault(detaliFactura => detaliFactura.IdFactura == idFactura);
         }
+
+        public override DetaliiFactura? FindById(object id)
+        {
+            return _table.FirstOrDefault(detaliiFactura => detaliiFactura.IdDetaliiFactura.Equals(id));
+        }
     }
 }

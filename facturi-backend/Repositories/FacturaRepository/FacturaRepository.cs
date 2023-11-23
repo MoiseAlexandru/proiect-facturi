@@ -17,5 +17,9 @@ namespace facturi_backend.Repositories.FacturaRepository
             return currentId;
         }
 
+        public override Factura? FindById(object id)
+        {
+            return _table.FirstOrDefault(factura => factura.IdFactura.Equals(id));
+        }
     }
 }

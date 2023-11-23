@@ -60,7 +60,7 @@ namespace facturi_backend.Repositories.GenericRepository
             _table.RemoveRange(entities);
         }
 
-        public TEntity? FindById(object id)
+        public virtual TEntity? FindById(object id)
         {
             return _table.Find(id);
         }
