@@ -59,5 +59,20 @@ namespace facturi_backend.Controllers
             _facturaService.DeleteFacturaById(id);
             return Ok();
         }
+
+        [HttpDelete()]
+        public async Task<IActionResult> DeleteAll()
+        {
+            var facturi = await _facturaService.GetAll();
+            if (facturi == null)
+                return Ok();
+            foreach(FacturaResponseDTO factura in facturi)
+            {
+                _facturaService.DeleteFacturaById(factura.IdFactura);
+            }
+            if (_facturaService.GetFacturaById == null)
+                return NotFound();
+            return Ok();
+        }
     }
 }

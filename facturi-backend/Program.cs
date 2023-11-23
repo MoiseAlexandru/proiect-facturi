@@ -1,4 +1,5 @@
 using facturi_backend.Data;
+using facturi_backend.Helper.Seeders;
 using facturi_backend.Repositories.DetaliiFacturaRepository;
 using facturi_backend.Repositories.FacturaRepository;
 using facturi_backend.Services.DetaliiFacturaService;
@@ -23,7 +24,11 @@ builder.Services.AddTransient<IDetaliiFacturaRepository, DetaliiFacturaRepositor
 builder.Services.AddTransient<IFacturaService, FacturaService>();
 builder.Services.AddTransient<IDetaliiFacturaService, DetaliiFacturaService>();
 
+// Seeders
+builder.Services.AddScoped<FacturiSeeder>();
+
 var app = builder.Build();
+SeedData(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -39,3 +44,13 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<FacturiSeeder>();
+        service.SeedFacturiInitiale();
+    }
+}
