@@ -59,8 +59,8 @@ namespace facturi_backend.Services.DetaliiFacturaService
                 return;
             detaliiFactura.NumeProdus = payload.NumeProdus;
             detaliiFactura.Cantitate = payload.Cantitate;
-            detaliiFactura.PretUnitar = payload.Cantitate == 0 ? 0 : payload.Valoare / payload.Cantitate;
-            detaliiFactura.Valoare = payload.Valoare;
+            detaliiFactura.PretUnitar = payload.PretUnitar;
+            detaliiFactura.Valoare = payload.Cantitate * payload.PretUnitar;
             _detaliiFacturaRepository.Update(detaliiFactura);
             _detaliiFacturaRepository.Save();
         }

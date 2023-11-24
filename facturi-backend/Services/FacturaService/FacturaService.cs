@@ -51,7 +51,7 @@ namespace facturi_backend.Services.FacturaService
             return resultList;
         }
 
-        public void AddFactura(FacturaReceiveDTO payload)
+        public int AddFactura(FacturaReceiveDTO payload)
         {
             int genIdFactura = _facturaRepository.GenerateUniqueId();
             DetaliiFactura emptyDetaliiFactura = new()
@@ -78,18 +78,20 @@ namespace facturi_backend.Services.FacturaService
             _detaliiFacturaRepository.Create(emptyDetaliiFactura);
             _facturaRepository.Save();
             _detaliiFacturaRepository.Save();
+            return factura.IdFactura;
         }
 
-        public void UpdateFacturaById(int id, FacturaReceiveDTO payload)
+        public int UpdateFacturaById(int id, FacturaReceiveDTO payload)
         {
             Factura? factura = _facturaRepository.FindById(id);
             if(factura == null)
-                return;
+                return 0;
             factura.NumarFactura = payload.NumarFactura;
             factura.DataFacturare = payload.DataFacturare;
             factura.NumeClient = payload.NumeClient;
             _facturaRepository.Update(factura);
             _facturaRepository.Save();
+            return _detaliiFacturaRepository.FindByFacturaId(id).IdDetaliiFactura;
         }
 
         public void DeleteFacturaById(int id)

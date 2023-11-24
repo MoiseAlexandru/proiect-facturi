@@ -10,4 +10,4 @@
         public DetaliiFactura? DetaliiFactura { get; set; }
     }
 }
-    
+   

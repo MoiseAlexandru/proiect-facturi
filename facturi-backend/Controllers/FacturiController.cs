@@ -38,8 +38,8 @@ namespace facturi_backend.Controllers
         [HttpPost]
         public IActionResult CreateFactura([FromBody] FacturaReceiveDTO factura)
         {
-            _facturaService.AddFactura(factura);
-            return Ok();
+            int facturaId = _facturaService.AddFactura(factura);
+            return Ok(facturaId);
         }
 
         [HttpPut("{id}")]
@@ -47,8 +47,8 @@ namespace facturi_backend.Controllers
         {
             if(_facturaService.GetFacturaById == null)
                 return NotFound(id);
-            _facturaService.UpdateFacturaById(id, payload);
-            return Ok();
+            int detaliiId = _facturaService.UpdateFacturaById(id, payload);
+            return Ok(detaliiId);
         }
 
         [HttpDelete("{id}")]

@@ -6,8 +6,8 @@ namespace facturi_backend.Services.FacturaService
     {
         Task<List<FacturaResponseDTO>> GetAll();
         FacturaResponseDTO? GetFacturaById(int id);
-        void AddFactura(FacturaReceiveDTO payload);
-        void UpdateFacturaById(int id, FacturaReceiveDTO payload);
+        int AddFactura(FacturaReceiveDTO payload);
+        int UpdateFacturaById(int id, FacturaReceiveDTO payload);
         void DeleteFacturaById(int id);
     }
 }

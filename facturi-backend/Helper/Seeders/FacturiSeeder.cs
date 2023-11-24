@@ -62,7 +62,7 @@ namespace facturi_backend.Helper.Seeders
                 CreateAndConnectObj(12345, "987654", "Jane Smith", "Smartphone", 7, 17002.89M);
                 CreateAndConnectObj(98765, "456789", "Alice Johnson", "Tablet", 5, 5910.99M);
                 CreateAndConnectObj(43210, "654321", "Bob Williams", "Desktop Computer", 2, 12052.50M);
-                CreateAndConnectObj(87654, "111222333", "Eva Davis", "Headphones", 10, 2830.75M);
+                CreateAndConnectObj(87654, "1112223", "Eva Davis", "Headphones", 10, 2830.75M);
                 _databaseContext.SaveChanges();
             }
         }
